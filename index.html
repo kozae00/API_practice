@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 연습</title>
+</head>
+
+<body>
+    <h1>내 사이트임 ㅎㅇ</h1>
+    <p></p>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script>$.ajax({
+            method: "GET",  //전송 방식
+            url: "https://dapi.kakao.com/v3/search/book?target=title",  //전송 주소
+            data: { query: "미움받을 용기" }, //보낼 데이터
+            headers : {Authorization: "KakaoAK 1324f60d8318ebdbd32a671d7edd306e"}
+        })
+            .done(function (msg) { //done 이후는 요청에 대한 응답을 처리하는 코드
+                console.log(msg.documents[0].title);
+                console.log(msg.documents[0].thumbnail);
+                $( "p" ).append( "<strong>"+msg.documents[0].title+"</strong>" ); //strong 텍스트형식, +Hello+ 자바스크립트식 형식 계산
+                $( "p" ).append( "<img src =' "+msg.documents[0].thumbnail+"'/>" ); 
+            });</script>
+</body>
+
+</html>
